@@ -19,7 +19,7 @@ export function readPost(id) {
         axios.get(`${END_POINT}/posts/${id}`).then(response => {
             dispatch({
                 type: AT_POSTS.READ,
-                payload: response
+                payload: response.data
             })
         });
     }
