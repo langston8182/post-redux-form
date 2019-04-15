@@ -3,6 +3,7 @@ import {Link} from "react-router";
 import {reduxForm} from 'redux-form';
 import {createPost} from "../actions";
 import {connect} from 'react-redux';
+import {browserHistory} from "react-router";
 
 const formConfig = {
     form: "createPostForm",
@@ -12,12 +13,12 @@ const formConfig = {
 class PostForm extends Component {
 
     render() {
-        const {fields} = this.props;
+        const {fields, handleSubmit} = this.props;
         //Eclate tous les champs : evite d'ecrire default="..." ...
         return (
           <div>
               <h1>Nouveau post</h1>
-              <form>
+              <form onSubmit={handleSubmit(this.createPost.bind(this))}>
                   <div className="form-group">
                       <label>Titre</label>
                       <input className="form-control" type="text" {...fields.title} />
@@ -40,6 +41,14 @@ class PostForm extends Component {
         );
     }
 
+    createPost(post) {
+        this.props.createPost(post);
+        browserHistory.push('/');
+    }
 }
 
-export default connect(null, null)(reduxForm(formConfig)(PostForm));
+const mapDispatchToProps = {
+    createPost
+};
+
+export default connect(null, mapDispatchToProps)(reduxForm(formConfig)(PostForm));
