@@ -11,6 +11,9 @@ export default function(state = [], action) {
                return post.id !== action.payload;
             });
 
+        case AT_POSTS.CREATE:
+            return [...state, action.payload];
+
         default:
             return state;
     }
