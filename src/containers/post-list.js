@@ -3,6 +3,7 @@ import {readAllPost, deletePost} from "../actions";
 import {connect} from "react-redux";
 import PostListItem from '../components/post-list-item';
 import ReactCSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
+import {Link} from "react-router";
 
 class PostList extends Component {
 
@@ -14,6 +15,9 @@ class PostList extends Component {
         return (
           <div>
               <h1>Liste des posts</h1>
+              <div className="button_add">
+                  <Link to={'create-post'}><button className="btn btn-primary btn-circle btn-lg">+</button></Link>
+              </div>
               <table className="table table-hover">
                   <thead>
                   <tr>
