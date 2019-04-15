@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import {readAllPost} from "../actions";
+import {readAllPost, deletePost} from "../actions";
 import {connect} from "react-redux";
 import PostListItem from '../components/post-list-item';
+import ReactCSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 
 class PostList extends Component {
 
@@ -20,20 +21,27 @@ class PostList extends Component {
                       <th>Action</th>
                   </tr>
                   </thead>
-                  <tbody>
+                  <ReactCSSTransitionGroup component="tbody"
+                    transitionEnterTimeout={500}
+                    trnansitionLeaveTimeout={300}
+                    transitionName="fade">
                     {this.renderPosts()}
-                  </tbody>
+                  </ReactCSSTransitionGroup>
               </table>
           </div>
         );
 
     }
 
+    deletePostCallback(post) {
+        this.props.deletePost(post.id);
+    }
+
     renderPosts() {
         const {posts} = this.props;
         if (posts) {
             return posts.map(post =>
-                <PostListItem key={post.id} post={post} />
+                <PostListItem key={post.id} post={post} deletePostCallBack={(post) => this.deletePostCallback(post)} />
             )
         }
     }
@@ -46,7 +54,8 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-    readAllPost
+    readAllPost,
+    deletePost
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostList);

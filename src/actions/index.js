@@ -29,7 +29,7 @@ export function deletePost(id) {
     return function (dispatch) {
         axios.delete(`${END_POINT}/posts/${id}`).then(response => {
             dispatch({
-                type: AT_POSTS.READ_ALL,
+                type: AT_POSTS.DELETE,
                 payload: id
             })
         });

@@ -4,7 +4,7 @@ import ActivePost from './reducer-active-post';
 
 const rootReducer = combineReducers({
     posts: ReducerPosts,
-    activePost: ActivePost
+    activePost: ActivePost,
 });
 
 export default rootReducer;
