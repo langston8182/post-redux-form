@@ -8,7 +8,7 @@ export function readAllPost() {
         axios.get(`${END_POINT}/posts`).then(response => {
             dispatch({
                 type: AT_POSTS.READ_ALL,
-                payload: response
+                payload: response.data
             })
         });
     }
