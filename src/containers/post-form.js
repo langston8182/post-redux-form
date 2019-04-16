@@ -8,16 +8,13 @@ import {browserHistory} from "react-router";
 const formConfig = {
     form: "createPostForm",
     fields: ['title', 'content', 'author'],
-    validate: validate
+    validate: validate,
+    initialValues: {author: "Moi"}
 }
 
 class PostForm extends Component {
-
     render() {
         const {fields: {title, content, author}, handleSubmit, errors} = this.props;
-        console.log('---------------');
-        console.log('', errors);
-        console.log('---------------');
 
         //Eclate tous les champs : evite d'ecrire default="..." ...
         return (
